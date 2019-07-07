@@ -8,6 +8,8 @@
     <p>{{ reverseMessage.split('').reverse().join('') }}</p>
     <p v-if='ifDirectiveActive'>This text is shown because directive is set to {{ ifDirectiveActive }}</p>
     <a target="_blank" v-bind:href="urlBindingExample">This is an example of a link with a bound property</a>
+    <p>The following is an example of he v-on initiative</p>
+    <button v-on:[onAttribute]="clickDemo">Click me!</button>
   </div>
 </template>
 
@@ -21,9 +23,13 @@ export default {
     msg: String,
     rawHtml: String
   },
+  methods: {
+    clickDemo: function() { console.log('Click detected'); }
+  },
   data: function() {
     return {
       isDisabled: true,
+      onAttribute: 'click',
       ifDirectiveActive: true,
       urlBindingExample: 'http://www.google.com',
       reverseMessage: 'This message can be reversed using JS in mustache syntax',
