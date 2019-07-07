@@ -6,6 +6,8 @@
     <div v-html="rawHtml"></div>
     <button v-bind:disabled="isDisabled">Test Button</button>
     <p>{{ reverseMessage.split('').reverse().join('') }}</p>
+    <p v-if='ifDirectiveActive'>This text is shown because directive is set to {{ ifDirectiveActive }}</p>
+    <a target="_blank" v-bind:href="urlBindingExample">This is an example of a link with a bound property</a>
   </div>
 </template>
 
@@ -22,6 +24,8 @@ export default {
   data: function() {
     return {
       isDisabled: true,
+      ifDirectiveActive: true,
+      urlBindingExample: 'http://www.google.com',
       reverseMessage: 'This message can be reversed using JS in mustache syntax',
     };
   }
