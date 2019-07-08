@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <button v-on:click="toggleTest">Toggle</button>
-    <p v-if="test">Value of test is true</p>
-    <p v-else>Value of test is false</p>
     <TestComponent 
       id="passed-id"
       myClass="passed-class"

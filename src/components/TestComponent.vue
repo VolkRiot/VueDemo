@@ -4,13 +4,13 @@
     <p>My one time bind message is {{ msg }}</p>
     <!-- Raw HTML directive for interpreting HTML -->
     <div v-html="rawHtml"></div>
-    <button v-on:click="toggleReversed">Test Button</button>
-    <div v-if='makeReverse'>{{ reverseMessage.split('').reverse().join('') }}</div>
+    <button @click="toggleReversed">Test Button</button>
+    <div v-if='makeReverse'>{{ getReversedMessage }}</div>
     <div v-else>{{ reverseMessage }}</div>
     <p v-if="ifDirectiveActive">This text is shown because directive is set to {{ ifDirectiveActive }}</p>
     <a target="_blank" :href="urlBindingExample">This is an example of a link with a bound property</a>
     <p>The following is an example of he v-on initiative</p>
-    <button v-on:[onAttribute]="increment">Click to increment count!</button>
+    <button @[onAttribute]="increment">Click to increment count!</button>
     <p>{{`Counter: ${count}`}}</p>
     <form v-on:submit.prevent="onSubmit">
       <input type="text" />
@@ -45,13 +45,17 @@ export default {
       this.count += 1;
     },
     onSubmit() {
-      // console.log("Submit called");
+      console.log("Submit called");
     },
     toggleReversed() {
       this.makeReverse = !this.makeReverse;
     }
   },
-
+  computed: {
+    getReversedMessage: function() {
+      return this.reverseMessage.split('').reverse().join('');
+    }
+  },
 };
 </script>
 
