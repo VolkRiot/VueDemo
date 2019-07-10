@@ -5,9 +5,11 @@
     <!-- Raw HTML directive for interpreting HTML -->
     <div v-html="rawHtml"></div>
     <button @click="toggleReversed">Test Button</button>
-    <div v-if='makeReverse'>{{ getReversedMessage }}</div>
+    <div v-if="makeReverse">{{ getReversedMessage }}</div>
     <div v-else>{{ reverseMessage }}</div>
-    <p v-if="ifDirectiveActive">This text is shown because directive is set to {{ ifDirectiveActive }}</p>
+    <p
+      v-if="ifDirectiveActive"
+    >This text is shown because directive is set to {{ ifDirectiveActive }}</p>
     <a target="_blank" :href="urlBindingExample">This is an example of a link with a bound property</a>
     <p>The following is an example of he v-on initiative</p>
     <button @[onAttribute]="increment">Click to increment count!</button>
@@ -15,6 +17,13 @@
     <form v-on:submit.prevent="onSubmit">
       <input type="text" />
     </form>
+    <div id="watch-example">
+      <p>
+        Ask a yes/no question:
+        <input v-model="question" />
+      </p>
+      <p>{{ answer }}</p>
+    </div>
   </div>
 </template>
 
@@ -38,6 +47,8 @@ export default {
         "This message can be reversed using JS in mustache syntax",
       makeReverse: true,
       count: 0,
+      question: '',
+      answer: '',
     };
   },
   methods: {
@@ -52,10 +63,21 @@ export default {
     }
   },
   computed: {
+    // Computed have the advantage of being cached and recalculated only when the properties change
     getReversedMessage: function() {
-      return this.reverseMessage.split('').reverse().join('');
+      return this.reverseMessage
+        .split("")
+        .reverse()
+        .join("");
     }
   },
+  watch: {
+    // Watcher on the question property.
+    question(newQuestion, oldQuestion) {
+      console.log('Old State is ', oldQuestion);
+      console.log('New state is ', newQuestion);
+    }
+  }
 };
 </script>
 
