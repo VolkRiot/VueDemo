@@ -17,7 +17,8 @@
     <form v-on:submit.prevent="onSubmit">
       <input type="text" />
     </form>
-    <div id="watch-example">
+    <div id="watch-example"
+         v-bind:class="{ active: isActive, 'text-danger': hasError }">
       <p>
         Ask a yes/no question:
         <input v-model="question" />
@@ -43,12 +44,14 @@ export default {
       onAttribute: "click",
       ifDirectiveActive: true,
       urlBindingExample: "http://www.google.com",
+      isActive: true,
       reverseMessage:
         "This message can be reversed using JS in mustache syntax",
       makeReverse: true,
+      hasError: true,
       count: 0,
       question: '',
-      answer: '',
+      answer: 'I cannot give you an answer until you ask a question!',
     };
   },
   methods: {
@@ -89,6 +92,10 @@ export default {
 .passed-class {
   font-style: italic;
   font-weight: bold;
+}
+
+.text-danger {
+  background-color: cornflowerblue;
 }
 </style>
 
