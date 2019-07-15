@@ -6,7 +6,12 @@
     <div v-html="rawHtml"></div>
     <button @click="toggleReversed">Test Button</button>
     <div v-if="makeReverse">{{ getReversedMessage }}</div>
-    <div v-else>{{ reverseMessage }}</div>
+    <template v-else>
+      <p>This is an example of a conditional else render with template grouping</p>
+      <p>This second element is grouped in the same conditional</p>
+      <div>{{ reverseMessage }}</div>  
+    </template>
+    
     <div v-bind:style="styleObject">
       <p>THIS IS A TEST OF STYLE BINDING</p>
     </div>
