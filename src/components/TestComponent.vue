@@ -7,6 +7,9 @@
     <button @click="toggleReversed">Test Button</button>
     <div v-if="makeReverse">{{ getReversedMessage }}</div>
     <div v-else>{{ reverseMessage }}</div>
+    <div v-bind:style="styleObject">
+      <p>THIS IS A TEST OF STYLE BINDING</p>
+    </div>
     <p
       v-if="ifDirectiveActive"
     >This text is shown because directive is set to {{ ifDirectiveActive }}</p>
@@ -52,6 +55,12 @@ export default {
       count: 0,
       question: '',
       answer: 'I cannot give you an answer until you ask a question!',
+      styleObject: {
+        margin: 'auto',
+        backgroundColor: 'green',
+        fontSize: '24px',
+        width: '100px',
+      }
     };
   },
   methods: {
