@@ -33,6 +33,11 @@
       </p>
       <p>{{ answer }}</p>
     </div>
+    <ul>
+    <li v-bind:key="name" v-for="(name, index) of arrayDemo">
+      {{ `${name} at index ${index}` }}
+    </li>
+    </ul>
   </div>
 </template>
 
@@ -60,6 +65,7 @@ export default {
       count: 0,
       question: '',
       answer: 'I cannot give you an answer until you ask a question!',
+      arrayDemo: ['Misha', 'Lilly', 'Ella', 'Andrew'],
       styleObject: {
         margin: 'auto',
         backgroundColor: 'green',
